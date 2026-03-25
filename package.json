@@ -1,0 +1,26 @@
+{
+  "name": "task1-dashboard-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo: React dashboard + thin Node API",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c yellow,cyan \"npm run dev -w @task1/api\" \"npm run dev -w @task1/web\"",
+    "dev:web": "npm run dev -w @task1/web",
+    "dev:api": "npm run dev -w @task1/api",
+    "build": "npm run build -w @task1/web",
+    "start": "npm run start -w @task1/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "keywords": [
+    "dashboard",
+    "react",
+    "node",
+    "monorepo"
+  ],
+  "license": "MIT"
+}

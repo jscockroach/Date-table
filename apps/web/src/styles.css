@@ -1,0 +1,47 @@
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #0f2747;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+}
+
+.btn {
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #bcc7d6;
+  background: #f3f4f6;
+  color: #163152;
+  font-size: 16px;
+  padding: 0 28px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  border: none;
+  background: #2f63e0;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.btn-secondary {
+  background: #f5f7fb;
+}
+
+.btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+

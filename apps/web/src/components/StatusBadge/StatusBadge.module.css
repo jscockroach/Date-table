@@ -1,0 +1,38 @@
+.statusPill {
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-active {
+  color: #0b6f35;
+  background: #d2f0db;
+}
+
+.status-pending {
+  color: #936c00;
+  background: #f8ecbc;
+}
+
+.status-completed {
+  color: #46586e;
+  background: #e8ebef;
+}
+
+.status-onhold {
+  color: #8a6a00;
+  background: #f5e9b3;
+}
+
+.status-cancelled {
+  color: #b42318;
+  background: #f8d4d2;
+}
+
+.status-default {
+  color: #3f5166;
+  background: #e3e8f0;
+}
+
+

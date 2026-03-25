@@ -1,0 +1,23 @@
+.allocationCell {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.barTrack {
+  width: 120px;
+  height: 12px;
+  background: #d7dde7;
+  border-radius: 12px;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: 12px;
+  background: #2f63e0;
+}
+
+.emptyFallback {
+  color: #8b99ac;
+}

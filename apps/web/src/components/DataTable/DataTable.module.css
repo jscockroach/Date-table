@@ -1,0 +1,94 @@
+.tableWrap {
+  border-top: 1px solid #d5dbe5;
+  border-bottom: 1px solid #d5dbe5;
+  margin-top: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  border-bottom: 1px solid #d5dbe5;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.tableHeadCell {
+  background: #eceef2;
+  font-weight: 700;
+  cursor: default;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.thContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sortIndicator {
+  font-size: 0.9em;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.sortable:hover .sortIndicator {
+  opacity: 1;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 20px;
+}
+
+.mobilePreview {
+  display: none;
+  margin-top: 32px;
+  border: 1px solid #a9c0ec;
+  border-radius: 14px;
+  background: #eaf1ff;
+  padding: 22px;
+}
+
+.mobilePreviewTitle {
+  margin: 0 0 12px;
+  color: #1c3ca2;
+  font-size: 16px;
+}
+
+.mobileEmptyCard {
+  max-width: 880px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #d6dbe4;
+  padding: 18px 24px;
+  margin-bottom: 14px;
+}
+
+.muted {
+  color: #8b99ac;
+}
+
+@media (max-width: 767px) {
+  .tableWrap {
+    display: none;
+  }
+
+  .mobilePreview {
+    display: block;
+  }
+
+  .mobileEmptyCard {
+    max-width: 100%;
+  }
+}
