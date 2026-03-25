@@ -326,3 +326,61 @@ Fixed manual typing behavior for Start Date From / Start Date To inputs and remo
 ### Key Decisions
 - Kept native date inputs and validated at input boundary instead of allowing invalid dates into app state.
 - Rejected year values below 1000 to avoid invalid browser value warnings like `2-10-10`.
+
+## 2026-03-24 - Date Input Partial-Year Reset Fix
+
+### Feature
+Fixed the issue where typing the first year digit in Start Date From/To could reset day/month and force re-entry.
+
+### Implementation Steps
+1. Added local string state for both date inputs in `apps/web/src/components/DataTableFilters/DataTableFilters.tsx`.
+2. Bound date input `value` to local string state to preserve in-progress typing.
+3. Synced local date strings from external filter state only when actual filter dates change.
+4. Committed date changes to filter state only for empty values (clear) or fully valid parsed dates.
+
+### Key Decisions
+- Separated transient UI typing state from committed filter state to prevent controlled-input resets.
+- Kept strict validation before filter updates, while allowing users to complete year typing without UI jumps.
+
+## 2026-03-24 - Month-First Date Input Format
+
+### Feature
+Changed Start Date From/To inputs to use explicit `mm dd yyyy` month-first format (as in the design), independent from browser locale date formatting.
+
+### Implementation Steps
+1. Switched date fields in `apps/web/src/components/DataTableFilters/DataTableFilters.tsx` from native `type="date"` to `type="text"`.
+2. Added month-first formatter to display values as `MM DD YYYY`.
+3. Added parser that accepts month-first user input and still commits only valid dates to filter state.
+4. Updated `DataTableFilters` tests to assert `mm dd yyyy` placeholders and month-first input values.
+
+### Key Decisions
+- Replaced native date input so placeholder/order are guaranteed and not overridden by browser locale.
+- Kept strict validation and local typing state to preserve stable UX during partial input.
+
+## 2026-03-24 - Excel-Friendly CSV Export Columns
+
+### Feature
+Fixed CSV export opening in Excel as a single column by making the downloaded CSV explicitly Excel-compatible for comma delimiter parsing.
+
+### Implementation Steps
+1. Updated `apps/web/src/utils/csvService/csvService.ts` in `downloadCsv` to prepend UTF-8 BOM.
+2. Added `sep=,` directive line at the top of downloaded CSV content.
+3. Normalized line endings to `CRLF` (`\r\n`) for better spreadsheet compatibility on Windows.
+
+### Key Decisions
+- Kept `generateCsv` unchanged as pure comma-separated CSV output.
+- Applied Excel compatibility only at download stage to avoid affecting internal CSV generation tests and logic.
+
+## 2026-03-25 - Vercel Serverless API Entry
+
+### Feature
+Refactored backend entrypoint for Vercel Serverless compatibility by removing direct server startup and exporting the Express app as the module default.
+
+### Implementation Steps
+1. Updated `apps/api/src/server.ts` to remove `app.listen(...)`.
+2. Added `export default app` so Vercel can treat the module as a server/handler export.
+3. Kept existing app wiring unchanged in `createApp()` including JSON middleware and `/employees` route.
+
+### Key Decisions
+- Kept `createApp()` as the single composition root to preserve all existing routes and middleware behavior.
+- Added inline comments clarifying that Vercel owns the HTTP listener lifecycle in serverless mode.

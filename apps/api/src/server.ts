@@ -1,8 +1,8 @@
 import { createApp } from './app.js';
-import { env } from './config/env.js';
 
+// Vercel Serverless Functions require a default-exported handler/server.
+// We intentionally do NOT call app.listen() here: Vercel creates and manages
+// the HTTP server lifecycle for each invocation.
 const app = createApp();
 
-app.listen(env.port, () => {
-  console.log(`API listening on http://localhost:${env.port}`);
-});
+export default app;
