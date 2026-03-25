@@ -384,3 +384,17 @@ Refactored backend entrypoint for Vercel Serverless compatibility by removing di
 ### Key Decisions
 - Kept `createApp()` as the single composition root to preserve all existing routes and middleware behavior.
 - Added inline comments clarifying that Vercel owns the HTTP listener lifecycle in serverless mode.
+
+## 2026-03-25 - Vercel dist/app.js Default Export Fix
+
+### Feature
+Fixed backend Vercel runtime error `Invalid export found in module ... dist/app.js` by ensuring `app.ts` also exports a server as default.
+
+### Implementation Steps
+1. Updated `apps/api/src/app.ts` to keep `createApp()` and additionally export `default app`.
+2. Updated `apps/api/src/server.ts` to re-export the same default app instance from `app.ts`.
+3. Rebuilt backend to confirm generated `dist/app.js` now includes `export default app`.
+
+### Key Decisions
+- Made both potential Vercel entry modules (`dist/app.js` and `dist/server.js`) valid serverless exports.
+- Kept route and middleware wiring unchanged, including `/employees` JSON endpoint behavior.

@@ -16,3 +16,8 @@ export function createApp() {
 
   return app;
 }
+
+// Export default app for serverless runtimes (e.g. Vercel) that expect
+// a function/server as the module default export.
+const app = createApp();
+export default app;
